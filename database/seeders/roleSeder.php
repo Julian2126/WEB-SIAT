@@ -30,6 +30,14 @@ class roleSeder extends Seeder
      Permission::create(['name' => 'Ver Acudiente'])->syncRoles($role4);
      Permission::create(['name' => 'Ver Monitora'])->syncRoles($role,$role5);
      Permission::create(['name' => 'Ver estudiantes'])->syncRoles($role);
+
+
+     Permission::create(['name' => 'menu Admin'])->syncRoles($role);
+     Permission::create(['name' => 'menu Usuario'])->syncRoles($role2,$role);
+     Permission::create(['name' => 'Ver Conductores'])->syncRoles($role3);
+     Permission::create(['name' => 'Ver Acudiente'])->syncRoles($role4);
+     Permission::create(['name' => 'Ver Monitora'])->syncRoles($role,$role5);
+     Permission::create(['name' => 'Ver estudiantes'])->syncRoles($role);
     }
 }
 
