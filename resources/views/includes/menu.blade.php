@@ -10,7 +10,7 @@
       <ul class="nav nav-pills flex-column ">
         <li class="nav-item content-center py-5">
         
-        @can('Ver Conductores')
+        @can('Ver Conductor')
         <a href="/conductor">
           <button type="button" class="btn btn-link col-12 text-white " >
             <svg width="30" height="30" fill="" class="bi bi-people" viewBox="0 0 16 16">

@@ -44,7 +44,9 @@
           </div>
           <div class="col-6">
             <strong> ID VEHICULO:</strong>
-            <input type="text" class="form-control" id="Id_vehiculo" placeholder="Ejemplo:activo" name="Id_vehiculo">
+            <select> @foreach ($Vehiculos as $Vehiculos) 
+             <option value="0">{{$Vehiculos->Placa}}:</option> 
+            @endforeach </select>
           </div>
           <div class="col-6 py-4">
             <a href="{{ url('rutas') }}" class="btn btn-danger col-5">Cancelar</a>
