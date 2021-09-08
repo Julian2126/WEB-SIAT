@@ -44,9 +44,12 @@
           </div>
           <div class="col-6">
             <strong> ID VEHICULO:</strong>
-            <select name="Id_vehiculo"> @foreach ($Vehiculos as $Vehiculos) 
-             <option value=1>{{$Vehiculos->Placa}}:</option> 
-            @endforeach </select>
+            <select id="Id_vehiculo" name="Id_vehiculo">
+            <option value="" selected disabled>Please select</option>
+            @foreach($Vehiculos as $vehiculos)
+            <option value= {{$vehiculos->id}}>{{$vehiculos->Placa}}</option>            
+            @endforeach
+            </select>
           </div>
           <div class="col-6 py-4">
             <a href="{{ url('rutas') }}" class="btn btn-danger col-5">Cancelar</a>
