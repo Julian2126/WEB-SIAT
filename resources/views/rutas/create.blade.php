@@ -44,8 +44,8 @@
           </div>
           <div class="col-6">
             <strong> ID VEHICULO:</strong>
-            <select> @foreach ($Vehiculos as $Vehiculos) 
-             <option name="Id_vehiculo"value="1">{{$Vehiculos->Placa}}:</option> 
+            <select name="Id_vehiculo"> @foreach ($Vehiculos as $Vehiculos) 
+             <option value=1>{{$Vehiculos->Placa}}:</option> 
             @endforeach </select>
           </div>
           <div class="col-6 py-4">
