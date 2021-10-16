@@ -39,7 +39,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-success  shadow-sm">
-            <a href="home"> <img src="/img/SIAT.png" class="img-fluid" width=130></a>
+            <a href="/"> <img src="/img/SIAT.png" class="img-fluid" width=130></a>
             <div class="container">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -52,13 +52,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     
-                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                     <form action="/instituciones" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
+                            <input type="text" name="texto" class="form-control bg-light border-0 small" placeholder="Buscar nombre..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="button">
+                                <button class="btn btn-success" type="submit">
                                     <img src="/img/buscar.png" class="img-fluid" width=20>
                                 </button>
                             </div>

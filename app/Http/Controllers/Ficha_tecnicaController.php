@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ficha_tecnica;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class Ficha_tecnicaController extends Controller
@@ -12,11 +13,17 @@ class Ficha_tecnicaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $ficha_tecnica = Ficha_tecnica::all();
-        return view('ficha_tecnica.index')->with('ficha_tecnica', $ficha_tecnica);
+        $texto = ($request->get('texto'));
+        
+        $ficha_tecnica = DB::select("SELECT * FROM ficha_tecnicas WHERE Propietario like '%$texto%'");
+        
+         
+        return view('ficha_tecnica.index', compact('ficha_tecnica', 'texto'));
+        
+        // $ficha_tecnica = Ficha_tecnica::all();
+        // return view('ficha_tecnica.index')->with('ficha_tecnica', $ficha_tecnica);
         
     }
 

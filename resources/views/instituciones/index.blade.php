@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nit</th>
+                                <!-- <th>Nit</th> -->
                                 <th>Nombre</th>
                                 <th>Telefono</th>
                                 <th>Email</th>
@@ -29,10 +29,15 @@
                         </thead>
                         <br>
                         <tbody>
+                        @if($instituciones==null)
+                                <tr>
+                                    <td colspan="8">No hay resultados</td>
+                                </tr>
+                            @else
                             @foreach ($instituciones as $instituciones)
                                 <tr>
                                     <td>{{$instituciones->id}}</td>
-                                    <td>{{$instituciones->Nit}}</td>
+                                    <!-- <td>{{$instituciones->Nit}}</td> -->
                                     <td>{{$instituciones->Nombre}}</td>
                                     <td>{{$instituciones->Telefono}}</td>
                                     <td>{{$instituciones->Email}}</td>
@@ -40,16 +45,17 @@
 
                                     <td>
                                         <form action="{{ route('instituciones.destroy', $instituciones->id)}}" method="POST">
-                                            <a href="{{ route('instituciones.show', $instituciones->id) }}" class="btn btn-info">Mostrar</a>
-                                            <a href="{{ route('instituciones.edit',$instituciones->id) }}" class="btn btn-primary">Editar</a>
+                                            <a href="{{ route('instituciones.show', $instituciones->id) }}" class="btn btn-sm btn-info">Mostrar</a>
+                                            <a href="{{ route('instituciones.edit',$instituciones->id) }}" class="btn btn-sm btn-primary">Editar</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
                                         </form>
                                     </td>
 
                                 </tr>
                             @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>

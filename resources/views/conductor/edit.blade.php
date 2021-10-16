@@ -1,7 +1,7 @@
 @extends('layouts.conductor')
 
 @section('contenidoconductor')
-
+@can ('Modificar Conductor')
 
 <div class="py-3 col-10 ml-5">
     <div class="bg-secondary dropdown-divider"></div>
@@ -54,5 +54,5 @@
           </div>
         </div>
     </div>
-
+@endcan
 @endsection

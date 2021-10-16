@@ -17,12 +17,15 @@ class CreateRutasTable extends Migration
             $table->id();
             $table->integer('Numero_ruta');
             $table->integer('Numero_estudiantes');
-            $table->string('Hubicacion_gps', 100);
             $table->string('Origen', 50);
+            $table->decimal('Latitud_origen', 10,8);
+            $table->decimal('Longitud_origen', 11,8);
             $table->string('Destino', 50);
-            $table->bigInteger("Id_vehiculo")->unsigned();
+            $table->decimal('Latitud_destino', 10,8);
+            $table->decimal('Longitud_destino', 11,8);
+            $table->bigInteger("vehiculo_id")->unsigned();
 
-            $table->foreign("Id_vehiculo")->references("id")->on("vehiculos");
+            $table->foreign("vehiculo_id")->references("id")->on("vehiculos");
                  
             $table->timestamps();
         });

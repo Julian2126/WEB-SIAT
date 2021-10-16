@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alertas;
+use App\Models\Padres;
+use App\Models\Monitores;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AlertasController extends Controller
@@ -12,11 +16,21 @@ class AlertasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
+        
+        $alertas = DB::select("SELECT * FROM alertas WHERE Tipo like '%$texto%'");
+        
+        $padre = DB::select("SELECT * FROM padres");
+        $monitor = DB::select("SELECT * FROM monitores");
+         
+        return view('alertas.index', compact('alertas', 'texto'),['padre'=>$padre, 'monitor'=>$monitor]);
+        
+        
         //
-        $alertas = Alertas::all();
-        return view('alertas.index')->with('alertas', $alertas);
+        // $alertas = Alertas::all();
+        // return view('alertas.index')->with('alertas', $alertas);
         
     }
 
@@ -28,7 +42,9 @@ class AlertasController extends Controller
     public function create()
     {
         //
-        return view('alertas.create');
+        $padre = Padres::all();
+        $monitor = Monitores::all();
+        return view('alertas.create', ['padre'=>$padre, 'monitor'=>$monitor]);
     }
 
     /**
@@ -42,8 +58,6 @@ class AlertasController extends Controller
         //
         $alertas = new alertas([
             'Tipo' => $request->get('Tipo'),
-            'Remitente' => $request->get('Remitente'),
-            'Receptor' => $request->get('Receptor'),
             'Id_monitor' => $request->get('Id_monitor'),
             'Id_padre' => $request->get('Id_padre')
         ]);
@@ -91,8 +105,6 @@ class AlertasController extends Controller
         $alertas = Alertas::findOrFail($id);
 
         $alertas->Tipo = $request->get('Tipo');
-        $alertas->Remitente = $request->get('Remitente');
-        $alertas->Receptor = $request->get('Receptor');
         $alertas->Id_monitor = $request->get('Id_monitor');
         $alertas->Id_padre = $request->get('Id_padre');
 

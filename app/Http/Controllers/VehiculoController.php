@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Vehiculo;
 
 class VehiculoController extends Controller
@@ -12,11 +13,14 @@ class VehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
         
-        $vehiculo = Vehiculo::all();
-        return view('vehiculo.list', compact('vehiculo', 'vehiculo'));
+        $vehiculo = DB::select("SELECT * FROM vehiculos WHERE Placa like '%$texto%'");
+        
+         
+        return view('vehiculo.list', compact('vehiculo', 'texto'));
         
         
     }

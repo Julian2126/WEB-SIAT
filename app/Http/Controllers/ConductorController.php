@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Conductor;
 
 class ConductorController extends Controller
@@ -12,12 +13,15 @@ class ConductorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $conductor = Conductor::all();
-        return view('conductor.index')->with('conductor', $conductor);
-         
+        $ctexto = ($request->get('ctexto'));
+        
+        $conductor = DB::select("SELECT * FROM conductors WHERE Apellido like '%$ctexto%'");
+        
+        return view('conductor.index', compact('conductor', 'ctexto'));
+        
     }
 
     /**

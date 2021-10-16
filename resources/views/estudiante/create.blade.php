@@ -1,7 +1,7 @@
 @extends('layouts.estudiante')
 
 @section('contenidoestudiante')
-
+@can ('Crear Estudiantes')
 <div class="py-3 col-10 ml-5">
     <div class="bg-secondary dropdown-divider"></div>
       <h2 class="text-success">Datos Nuevo Estudiante :</h2>
@@ -56,5 +56,5 @@
         
         
       </div>
-
+@endcan
 @endsection

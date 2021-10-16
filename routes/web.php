@@ -48,3 +48,14 @@ Route::resource('/instituciones', InstitucionesController::class);
 Route::resource('/alertas', AlertasController::class);
 
 Route::resource('/monitores', MonitoresController::class);
+
+
+
+Route::get('/mapa', function(){
+    return view('mapa');
+});
+
+
+Route::get('/pruebavista', function () {
+    return view('pruebavista');
+});

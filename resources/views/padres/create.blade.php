@@ -1,7 +1,7 @@
 @extends('layouts.padres')
 
 @section('contenidopadres')
-
+@can ('Crear Padres')
 <div class="py-3 col-10 ml-5">
     <div class="bg-secondary dropdown-divider"></div>
       <h2 class="text-success">Datos nuevo padre:</h2>
@@ -52,5 +52,5 @@
         
         
       </div>
-
+@endcan
 @endsection

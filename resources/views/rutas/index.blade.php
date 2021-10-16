@@ -13,49 +13,64 @@
                 <!-- Page Heading -->
                 <div class="card shadow mb-0">
                     <div class="card-body">
-
+                    @can ('crear rutas')
                     <a class="float-right ms-5 btn btn-success " href="{{ route('rutas.create') }}">Crear</a>
                     <br><br>
+                    @endcan
                     <table class="table table-striped mt-4">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Numero de ruta</th>
                                 <th>Numero de estudiantes</th>
-                                <th>Ubicación gps</th>
                                 <th>Origen</th>
+                                <!-- <th>Latitud origen</th> -->
+                                <!-- <th>Longitud origen</th>   -->
                                 <th>Destino</th>
+                                <!-- <th>Latitud destino</th> -->
+                                <!-- <th>Longitud destino</th> -->
                                 <th>Id_vehiculo</th>
                                 <th>Accion</th>
                             </tr>
                         </thead>
                         <br>
                         <tbody>
+                        @if($rutas==null)
+                                <tr>
+                                    <td colspan="8">No hay resultados</td>
+                                </tr>
+                            @else
                             @foreach ($rutas as $rutas)
                                 <tr>
                                     <td>{{$rutas->id}}</td>
                                     <td>{{$rutas->Numero_ruta}}</td>
                                     <td>{{$rutas->Numero_estudiantes}}</td>
-                                    <td>{{$rutas->Hubicacion_gps}}</td>
                                     <td>{{$rutas->Origen}}</td>
+                                    <!-- <td>{{$rutas->Latitud_origen}}</td> -->
+                                    <!-- <td>{{$rutas->Longitud_origen}}</td> -->
                                     <td>{{$rutas->Destino}}</td>
-                                    <td>{{$rutas->Id_vehiculo}}</td>
+                                    <!-- <td>{{$rutas->Latitud_destino}}</td> -->
+                                    <!-- <td>{{$rutas->Longitud_destino}}</td> -->
+                                    <td>{{$rutas->vehiculo_id}}</td>
                                     <td>
 
-                                        
-
                                         <form action="{{ route('rutas.destroy',$rutas->id)}}" method="POST">    
-                                            <a class="btn btn-info" href="{{ route('rutas.show',$rutas->id) }}">Show</a>
-                                            <a class="btn btn-primary" href="{{ route('rutas.edit',$rutas->id) }}">Editar</a>
+                                            <a class="btn btn-sm btn-info" href="{{ route('rutas.show',$rutas->id) }}">Show</a>
+                                            @can ('Modificar rutas')
+                                            <a class="btn btn-sm btn-primary" href="{{ route('rutas.edit',$rutas->id) }}">Editar</a>
+                                            @endcan
                                             @csrf 
                                             @method('DELETE')   
-                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                            @can ('Eliminar rutas')
+                                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+                                            @endcan
                                         </form>
                                         
                                         
                                     </td>
                                 </tr>
                             @endforeach
+                        @endif
                         </tbody>
                     </table>
 

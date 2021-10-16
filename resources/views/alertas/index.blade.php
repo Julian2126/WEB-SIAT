@@ -21,8 +21,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Tipo</th>
-                                <th>Remitente</th>
-                                <th>Receptor</th>
                                 <th>Id monitor</th>
                                 <th>Id padre</th>
                                 <th>Acción</th>
@@ -30,29 +28,35 @@
                         </thead>
                         <br>
                         <tbody>
+                        @if($alertas==null)
+                                <tr>
+                                    <td colspan="8">No hay resultados</td>
+                                </tr>
+                            @else
                             @foreach ($alertas as $alertas)
                                 <tr>
                                     <td>{{$alertas->id}}</td>
                                     <td>{{$alertas->Tipo}}</td>
-                                    <td>{{$alertas->Remitente}}</td>
-                                    <td>{{$alertas->Receptor}}</td>
                                     <td>{{$alertas->Id_monitor}}</td>
                                     <td>{{$alertas->Id_padre}}</td>
 
                                     <td>
                                         <form action="{{ route('alertas.destroy', $alertas->id)}}" method="POST">
-                                            <a href="{{ route('alertas.show', $alertas->id) }}" class="btn btn-info">Mostrar</a>
-                                            <a href="{{ route('alertas.edit',$alertas->id) }}" class="btn btn-primary">Editar</a>
+                                            <a href="{{ route('alertas.show', $alertas->id) }}" class="btn btn-sm btn-info">Mostrar</a>
+                                            <a href="{{ route('alertas.edit',$alertas->id) }}" class="btn btn-sm btn-primary">Editar</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
                                         </form>
                                     </td>
 
                                 </tr>
                             @endforeach
+                        @endif
                         </tbody>
                     </table>
+                    
+                
                 </div>
                 
             </div>

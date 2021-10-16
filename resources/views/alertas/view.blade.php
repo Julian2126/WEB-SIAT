@@ -14,7 +14,7 @@
                 <div class="card shadow mb-0">
                     <div class="card-body">
 
-                    <a class="float-right ms-5 btn btn-success " href="/conductor">Volver</a>
+                    <a class="float-right ms-5 btn btn-success " href="/alertas">Volver</a>
                     <br><br>
                     <table class="table table-bordered table-striped float-left-5">
                         <tr>
@@ -24,14 +24,6 @@
                         <tr>
                             <th>Tipo:</th>
                             <td>{{ $alertas->Tipo }}</td>
-                        </tr>
-                        <tr>
-                            <th>Remitente:</th>
-                            <td>{{ $alertas->Remitente }}</td>
-                        </tr>
-                        <tr>
-                            <th>Receptor:</th>
-                            <td>{{ $alertas->Receptor }}</td>
                         </tr>
                         <tr>
                             <th>Id monitor:</th>

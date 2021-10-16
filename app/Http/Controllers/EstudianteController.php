@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -12,11 +13,19 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
+        
+        $estudiante = DB::select("SELECT * FROM estudiantes WHERE Apellido like '%$texto%'");
+        
+         
+        return view('estudiante.index', compact('estudiante', 'texto'));
+        
+        
         //
-        $estudiante = Estudiante::all();
-        return view('estudiante.index')->with('estudiante', $estudiante);
+        // $estudiante = Estudiante::all();
+        // return view('estudiante.index')->with('estudiante', $estudiante);
         
     }
 

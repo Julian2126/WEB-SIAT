@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Padres;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PadresController extends Controller
@@ -12,11 +13,19 @@ class PadresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
+        
+        $padres = DB::select("SELECT * FROM padres WHERE Apellido like '%$texto%'");
+        
+         
+        return view('padres.index', compact('padres', 'texto'));
+        
+        
         //
-        $padres = Padres::all();
-        return view('padres.index')->with('padres', $padres);
+        // $padres = Padres::all();
+        // return view('padres.index')->with('padres', $padres);
         
     }
 

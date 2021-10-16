@@ -16,8 +16,6 @@ class CreateAlertasTable extends Migration
         Schema::create('alertas', function (Blueprint $table) {
             $table->id();
             $table->string('Tipo', 50);
-            $table->string('Remitente', 100);
-            $table->string('Receptor', 100);
             $table->bigInteger("Id_monitor")->unsigned();
 
             $table->foreign("Id_monitor")->references("id")->on("monitores");

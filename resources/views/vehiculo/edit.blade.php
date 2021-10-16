@@ -1,6 +1,7 @@
 @extends('layouts.vehiculo')
 @section('contenidovehiculo')
 
+@can ('modificar Vehiculos')
   <br><br>
   <div class="bg-secondary dropdown-divider"></div>
   <h1 class="h3 mb-2 text-gray-800 text-success">Editar Vehiculos</h1>
@@ -65,5 +66,8 @@
   </div>
 </div>  
 <div class="bg-secondary dropdown-divider"></div>
+@else 
+<h1>Permiso Denegado</h1>
+@endcan
 
 @endsection

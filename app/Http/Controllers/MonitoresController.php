@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Monitores;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class MonitoresController extends Controller
@@ -12,11 +13,19 @@ class MonitoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
+        
+        $monitores = DB::select("SELECT * FROM monitores WHERE Apellido like '%$texto%'");
+        
+         
+        return view('monitores.index', compact('monitores', 'texto'));
+        
+        
         //
-        $monitores = Monitores::all();
-        return view('monitores.index')->with('monitores', $monitores);
+        // $monitores = Monitores::all();
+        // return view('monitores.index')->with('monitores', $monitores);
     }
 
     /**

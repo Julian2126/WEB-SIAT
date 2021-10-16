@@ -13,7 +13,7 @@ class CreateFichaTecnicaTable extends Migration
      */
     public function up()
     {
-        Schema::create('ficha_tecnica', function (Blueprint $table) {
+        Schema::create('ficha_tecnicas', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_creacion');
             $table->string('Propietario', 100);
@@ -33,6 +33,6 @@ class CreateFichaTecnicaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ficha_tecnica');
+        Schema::dropIfExists('ficha_tecnicas');
     }
 }

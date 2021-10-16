@@ -1,7 +1,7 @@
 @extends('layouts.monitores')
  
 @section('contenidomonitores')
-  
+  @can ('Ver Monitores')
 <div class="bg-secondary dropdown-divider"></div>
   <h1 class="h3 mb-0 text-gray-800 text-success">Monitor</h1>
     <br>
@@ -47,5 +47,7 @@
                         </tr>
                     
                     </table>
-               
+                    </div>
+                    
+               @endcan  
 @endsection

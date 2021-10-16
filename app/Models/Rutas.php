@@ -4,17 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Vehiculo;
 
 class Rutas extends Model
 {
     use HasFactory;
+
+    public function rvehiculo(){
+        // return $this->belongsTo(Vehiculo::class, 'Vehiculo_Placa', 'Placa');
+    }
+
     protected $fillable = [
         'id',
         'Numero_ruta',
         'Numero_estudiantes',
-        'Hubicacion_gps',
         'Origen',
+        'Latitud_origen',
+        'Longitud_origen',
         'Destino',
-        'Id_vehiculo'
+        'Latitud_destino',
+        'Longitud_destino',
+        'vehiculo_id'
     ];
 }

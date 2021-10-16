@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rutas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Vehiculo;
 
 
@@ -14,11 +15,16 @@ class RutaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $rutas = Rutas::all();
-        return view('rutas.index')->with('rutas', $rutas);
+        $texto = ($request->get('texto'));
+        $vehiculo = Vehiculo::all();
+        
+        $rutas = DB::select("SELECT * FROM rutas WHERE Destino like '%$texto%'");
+        
+        // $rutas = Rutas::all();
+         
+        return view('rutas.index', compact('rutas', 'texto', $vehiculo));
     }
 
     /**
@@ -46,11 +52,15 @@ class RutaController extends Controller
         $rutas = new Rutas([
             'Numero_ruta' => $request->get('Numero_ruta'),
             'Numero_estudiantes' => $request->get('Numero_estudiantes'),
-            'Hubicacion_gps' => $request->get('Hubicacion_gps'),
             'Origen' => $request->get('Origen'),
+            'Latitud_origen' => $request->get('Latitud_origen'),
+            'Longitud_origen' => $request->get('Longitud_origen'),
             'Destino' => $request->get('Destino'),
-            'Id_vehiculo' => $request->get('Id_vehiculo')
+            'Latitud_destino' => $request->get('Latitud_destino'),
+            'Longitud_destino' => $request->get('Longitud_destino'),
+            'vehiculo_id' => $request->get('vehiculo_id')
         ]);
+        //dd( $request->get('vehiculo_id'));
         $rutas->save();
         return redirect('rutas')->with('success', 'Ruta ha sido agregada');
     }
@@ -65,7 +75,20 @@ class RutaController extends Controller
     {
         //
         $rutas = Rutas::find($id);
-        return view('rutas.view')->with('rutas', $rutas);
+        $origenes = DB::select("SELECT Origen FROM rutas WHERE id=$id");
+        $destinos = DB::select("SELECT Destino FROM rutas WHERE id=$id");
+        $latOrigen = DB::select("SELECT Latitud_origen FROM rutas WHERE id=$id");
+        $lonOrigen = DB::select("SELECT Longitud_origen FROM rutas WHERE id=$id");
+        $latDestino = DB::select("SELECT Latitud_destino FROM rutas WHERE id=$id");
+        $lonDestino = DB::select("SELECT Longitud_destino FROM rutas WHERE id=$id");
+        $origenf=$origenes[0]->Origen;
+        $destinof=$destinos[0]->Destino;
+        $latOrigenf = $latOrigen[0]->Latitud_origen;
+        $lonOrigenf = $lonOrigen[0]->Longitud_origen;
+        $latDestinof = $latDestino[0]->Latitud_destino;
+        $lonDestinof = $lonDestino[0]->Longitud_destino;
+
+        return view('rutas.view',['origenf'=>$origenf, 'destinof'=>$destinof, 'latOrigenf'=>$latOrigenf, 'lonOrigenf'=>$lonOrigenf , 'latDestinof'=>$latDestinof, 'lonDestinof'=>$lonDestinof]);
     }
 
     /**
@@ -94,10 +117,13 @@ class RutaController extends Controller
 
         $rutas->Numero_ruta = $request->get('Numero_ruta');
         $rutas->Numero_estudiantes = $request->get('Numero_estudiantes');
-        $rutas->Hubicacion_gps = $request->get('Hubicacion_gps');
         $rutas->Origen = $request->get('Origen');
+        $rutas->Latitud_origen = $request->get('Latitud_origen');
+        $rutas->Longitud_origen = $request->get('Longitud_origen');
         $rutas->Destino = $request->get('Destino');
-        $rutas->Id_vehiculo = $request->get('Id_vehiculo');
+        $rutas->Latitud_destino = $request->get('Latitud_destino');
+        $rutas->Longitud_destino = $request->get('Longitud_destino');
+        $rutas->vehiculo_id = $request->get('vehiculo_id');
 
         $rutas->save();
 

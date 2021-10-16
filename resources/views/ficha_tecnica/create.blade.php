@@ -2,7 +2,7 @@
 
 @section('contenidoficha_tecnica')
 
-
+@can ('Crear Ficha')
 <div class="py-3 col-10 ml-5">
     <div class="bg-secondary dropdown-divider"></div>
       <h2 class="text-success">Datos Nueva ficha técnica:</h2>
@@ -51,5 +51,6 @@
     </div>
                 
 </div>
+@endcan
 
 @endsection

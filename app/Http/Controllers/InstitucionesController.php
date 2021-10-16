@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instituciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InstitucionesController extends Controller
 {
@@ -12,11 +13,19 @@ class InstitucionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $texto = ($request->get('texto'));
+        
+        $instituciones = DB::select("SELECT * FROM instituciones WHERE Nombre like '%$texto%'");
+        
+         
+        return view('instituciones.index', compact('instituciones', 'texto'));
+        
+        
         //
-        $instituciones = Instituciones::all();
-        return view('instituciones.index')->with('instituciones', $instituciones);
+        // $instituciones = Instituciones::all();
+        // return view('instituciones.index')->with('instituciones', $instituciones);
     }
 
     /**

@@ -4,8 +4,9 @@
 
 <br><br>
   <div class="bg-secondary dropdown-divider"></div>
+  @can ('Modificar rutas')
   <h1 class="h3 mb-2 text-gray-800 text-success">Editar ruta</h1>
-
+@endcan
   <div class="row justify-content-center">
   <div class="card col-8 alert-success border-success ">
     <div class="card-body">
@@ -32,16 +33,28 @@
             <input type="text" class="form-control" id="Numero_estudiantes" value="{{$rutas->Numero_estudiantes}}" name="Numero_estudiantes"/>
           </div>
           <div class="col-6">
-            <strong> HUBICACIÓN GPS:</strong>
-            <input type="text" class="form-control" id="Hubicacion_gps" name="Hubicacion_gps" value="{{$rutas->Hubicacion_gps}}"/>
-          </div>
-          <div class="col-6">
             <strong> ORIGEN:</strong>
             <input type="text" class="form-control" id="Origen" name="Origen" value="{{$rutas->Origen}}"/>
           </div>
           <div class="col-6">
+            <strong> LATITUD ORIGEN:</strong>
+            <input type="text" class="form-control" id="Latitud_origen" name="Latitud_origen" value="{{$rutas->Latitud_origen}}"/>
+          </div>
+          <div class="col-6">
+            <strong> LONGITUD ORIGEN:</strong>
+            <input type="text" class="form-control" id="Longitud_origen" name="Longitud_origen" value="{{$rutas->Longitud_origen}}"/>
+          </div>
+          <div class="col-6">
             <strong> DESTINO:</strong>
             <input type="text" class="form-control" id="Destino" name="Destino" value="{{$rutas->Destino}}"/>
+          </div>
+          <div class="col-6">
+            <strong> LATITUD DESTINO:</strong>
+            <input type="text" class="form-control" id="Latitud_destino" name="Latitud_destino" value="{{$rutas->Latitud_destino}}"/>
+          </div>
+          <div class="col-6">
+            <strong> LONGITUD DESTINO:</strong>
+            <input type="text" class="form-control" id="Longitud_destino" name="Longitud_destino" value="{{$rutas->Longitud_destino}}"/>
           </div>
           <div class="col-6">
             <strong> ID VEHICULO:</strong>
@@ -59,5 +72,5 @@
 </div>  
 <div class="bg-secondary dropdown-divider"></div>
 
-
+@endcan
 @endsection

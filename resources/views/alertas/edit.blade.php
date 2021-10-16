@@ -19,14 +19,6 @@
                   <input type="text" class="form-control" value="{{$alertas->Tipo}}" id="Tipo" name="Tipo"/>
                 </div>
                 <div class="col-6 py-2">
-                  <strong> REMITENTE:</strong>
-                  <input type="text" class="form-control" value="{{$alertas->Remitente}}" id="Remitente" name="Remitente"/>
-                </div>
-                <div class="col-6 py-2">
-                  <strong> RECEPTOR:</strong>
-                  <input type="text" class="form-control" value="{{$alertas->Receptor}}" id="Receptor" name="Receptor"/>
-                </div>
-                <div class="col-6 py-2">
                     <strong> ID MONITOR: </strong>
                     <input type="text" class="form-control" value="{{$alertas->Id_monitor}}" id="Id_monitor" name="Id_monitor"/>
                 </div>
@@ -39,7 +31,6 @@
                   <a href="/alertas" class="btn btn-danger col-5">Cancelar</a>
                   <button type="submit" class="btn btn-success col-5">Guardar</button>
                 </div>
-
               </div>
             </form>
           </div>

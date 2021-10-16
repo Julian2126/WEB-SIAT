@@ -11,8 +11,6 @@ class Alertas extends Model
     protected $fillable = [
         'id',
         'Tipo',
-        'Remitente',
-        'Receptor',
         'Id_monitor',
         'Id_padre'
     ];
